@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Track Freelance Income in Google Sheets: A Step-by-Step Setup</title>
+<meta name="description" content="If you have several clients and payment platforms, remembering what you earned and what you kept is not realistic. A Google Sheet costs nothing and...">
+<link rel="canonical" href="https://dodobrazil.github.io/freelancer-fee-calculators/blog/track-freelance-income-google-sheets.html">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Track Freelance Income in Google Sheets: A Step-by-Step Setup","datePublished":"2026-11-26","dateModified":"2026-11-26","author":{"@type":"Organization","name":"Freelancer Fee Calculators"},"mainEntityOfPage":"https://dodobrazil.github.io/freelancer-fee-calculators/blog/track-freelance-income-google-sheets.html"}</script>
+</head><body data-page="guide">
+<header class="site"><div class="wrap"><a href="../index.html">Freelancer Fee Calculators</a><nav aria-label="Calculators"><a href="../upwork-fee-calculator.html">Upwork</a><a href="../fiverr-fee-calculator.html">Fiverr</a><a href="../paypal-fee-calculator.html">PayPal</a><a href="../blog/index.html">Guides</a></nav></div></header>
+<main class="wrap">
+<h1>Track Freelance Income in Google Sheets: A Step-by-Step Setup</h1>
+<p>If you have several clients and payment platforms, remembering what you earned and what you kept is not realistic. A Google Sheet costs nothing and does the job. This guide builds a basic income tracker in about 20 minutes. It is for record-keeping only, not tax advice.</p>
+<h2>1. Create the columns</h2>
+<p>Name a tab "Income" and put these headers in row 1:</p>
+<ul><li>A: Date</li><li>B: Client</li><li>C: Gross</li><li>D: Platform fee</li><li>E: Net</li><li>F: Note</li></ul>
+<p>Gross is what the client paid or invoiced. Fee is what a marketplace or payment service kept. Net is what reached you. Format column A as a date (Format &gt; Number &gt; Date) and C to E as currency.</p>
+<h2>2. Add a net formula</h2>
+<p>In E2:</p>
+<pre><code>=IF(C2="","",C2-D2)</code></pre>
+<p>If C2 is empty the cell stays blank; otherwise it subtracts the fee. If D is empty, the formula treats it as zero. Copy the formula down by dragging the fill handle, or copy E2 and paste it over E3:E500.</p>
+<h2>3. Add a yearly total with SUMIFS</h2>
+<p>Type a year (for example 2026) in I2. Then in I3:</p>
+<pre><code>=SUMIFS(E2:E500, A2:A500, "&gt;="&amp;DATE(I2,1,1), A2:A500, "&lt;"&amp;DATE(I2+1,1,1))</code></pre>
+<p>This adds the net amounts for dates in that year. Using DATE() is more reliable than typing date strings inside the formula, and the "before next January 1" form includes all of December 31. Change E2:E500 to C2:C500 for a gross total.</p>
+<h2>4. Add a set-aside cell</h2>
+<p>Many freelancers move a share of income into a separate account for taxes. Put your percentage in I4 (for example 0.25, formatted as a percent) and calculate the amount in I5:</p>
+<pre><code>=I3*I4</code></pre>
+<p>The percentage is your own planning figure. Work out a sensible one with a tax professional or your country's official guidance; the sheet knows nothing about your tax rules.</p>
+<h2>5. Keep client names consistent</h2>
+<p>"Acme", "Acme Inc" and "ACME" would count as three clients. Fix this with a dropdown:</p>
+<ol><li>Create a tab called "Lists" and type your client names in column A.</li><li>On the Income tab, select B2:B500.</li><li>Choose Data &gt; Data validation &gt; Add rule.</li><li>Set the criteria to "Dropdown (from a range)" and select the client list on the Lists tab.</li><li>Save.</li></ol>
+<p>Add new clients to the Lists tab as you win them.</p>
+<h2>6. Build a monthly summary</h2>
+<p>On a new tab called "Summary", enter the first day of each month as real dates in A2:A13 (2026-01-01, 2026-02-01 and so on). In B2:</p>
+<pre><code>=SUMIFS(Income!$E$2:$E$500, Income!$A$2:$A$500, "&gt;="&amp;A2, Income!$A$2:$A$500, "&lt;"&amp;EDATE(A2,1))</code></pre>
+<p>Fill down to B13. You now see income by month and can spot slow periods early. Select the range and use Insert &gt; Chart for a quick column chart.</p>
+<h2>7. Total by client</h2>
+<p>To see who pays your bills, list client names in column D of the Summary tab and use:</p>
+<pre><code>=SUMIFS(Income!$E$2:$E$500, Income!$B$2:$B$500, D2)</code></pre>
+<p>Sort descending to find your top clients.</p>
+<h2>8. Filter and sort</h2>
+<p>Select the header row and choose Data &gt; Create a filter. Use the arrow on Client to see one client, or on Date to see a quarter. Sorting by Net shows your biggest payments.</p>
+<h2>9. Keep it safe</h2>
+<ul><li>Log payments weekly, not at year end.</li><li>Download a copy now and then (File &gt; Download &gt; .xlsx or .csv).</li><li>Before changing formulas, duplicate the tab (right-click the tab name &gt; Duplicate).</li><li>Protect formula cells (Data &gt; Protect sheets and ranges) so you do not overwrite them by accident.</li><li>Keep invoices and platform statements; your sheet is a summary, not proof.</li></ul>
+<h2>Common problems</h2>
+<ul><li><strong>Totals look too low.</strong> Some dates were typed as text. Real dates align right; re-enter the ones that do not.</li><li><strong>Net is blank.</strong> The gross cell is empty or contains text.</li><li><strong>Wrong year.</strong> Check the year cell and the date column.</li></ul>
+<h2>Summary</h2>
+<p>Date, client, gross, fee and net columns; one net formula; a SUMIFS year total; a set-aside cell; a client dropdown; and a monthly summary. That is a complete income tracker with no add-ons.</p>
+<p>If you want to skip the setup, my full tracker has income, expenses, invoices and a dashboard ready to use: <a href="https://sungudogukan.gumroad.com/l/freelancer-tracker" rel="noopener">https://sungudogukan.gumroad.com/l/freelancer-tracker</a></p>
+<p class="mut">Published 2026-11-26. See also: <a href="index.html">all guides</a>, <a href="../index.html">all calculators</a>.</p>
+</main>
+<footer class="site"><div class="wrap"><p><strong>Disclaimer:</strong> These guides and calculators give general information based on published fee tables and are not financial, tax or legal advice. Fees and rules change; always confirm on the official page before deciding. Not affiliated with Upwork, Fiverr, PayPal or Wise.</p><p><a href="../index.html">Home</a> · <a href="../upwork-fee-calculator.html">Upwork</a> · <a href="../fiverr-fee-calculator.html">Fiverr</a> · <a href="../paypal-fee-calculator.html">PayPal</a> · <a href="../blog/index.html">Guides</a></p><p>Free download: <a href="https://sungudogukan.gumroad.com/l/free-freelancer-income-tracker" rel="noopener">Freelancer Income Tracker (Google Sheets mini)</a> to log what you keep after fees.</p></div></footer>
+</body></html>

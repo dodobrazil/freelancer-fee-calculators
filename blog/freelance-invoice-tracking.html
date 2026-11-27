@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Track Freelance Invoices Without Losing Money</title>
+<meta name="description" content="Sending an invoice feels like the end of a project. It is really the start of a smaller one: making sure the money arrives. Without a tracker, invoices...">
+<link rel="canonical" href="https://dodobrazil.github.io/freelancer-fee-calculators/blog/freelance-invoice-tracking.html">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Track Freelance Invoices Without Losing Money","datePublished":"2026-11-26","dateModified":"2026-11-26","author":{"@type":"Organization","name":"Freelancer Fee Calculators"},"mainEntityOfPage":"https://dodobrazil.github.io/freelancer-fee-calculators/blog/freelance-invoice-tracking.html"}</script>
+</head><body data-page="guide">
+<header class="site"><div class="wrap"><a href="../index.html">Freelancer Fee Calculators</a><nav aria-label="Calculators"><a href="../upwork-fee-calculator.html">Upwork</a><a href="../fiverr-fee-calculator.html">Fiverr</a><a href="../paypal-fee-calculator.html">PayPal</a><a href="../blog/index.html">Guides</a></nav></div></header>
+<main class="wrap">
+<h1>How to Track Freelance Invoices Without Losing Money</h1>
+<p>Sending an invoice feels like the end of a project. It is really the start of a smaller one: making sure the money arrives. Without a tracker, invoices slip through inboxes, due dates pass unnoticed and follow-ups never get sent. You do not need accounting software for this. A spreadsheet and a weekly habit are enough.</p>
+<h2>What columns a simple tracker needs</h2>
+<ul><li><strong>Invoice number.</strong> Makes each bill easy to reference with clients.</li><li><strong>Client.</strong></li><li><strong>Description.</strong> One line on the work covered.</li><li><strong>Issue date.</strong></li><li><strong>Payment terms.</strong> For example 14, 30 or 60 days.</li><li><strong>Due date.</strong> Calculated, not typed (see below).</li><li><strong>Amount and currency.</strong></li><li><strong>Status.</strong> Draft, Sent, Paid or Overdue.</li><li><strong>Date paid.</strong></li><li><strong>Notes.</strong> "Finance is processing", "partial payment received", and so on.</li></ul>
+<p>Keep one row per invoice, and resist adding columns you will not maintain.</p>
+<h2>Calculate the due date automatically</h2>
+<p>Type the issue date and the number of days from the terms, then let the sheet do the math. In Google Sheets or Excel, with the issue date in D2 and the terms in days in E2:</p>
+<pre><code>=IF(D2="","",D2+E2)</code></pre>
+<p>A formula means a changed term never leaves a stale due date behind.</p>
+<h2>Four statuses are enough</h2>
+<ul><li><strong>Draft:</strong> still being prepared. No money expected.</li><li><strong>Sent:</strong> delivered to the client, clock running.</li><li><strong>Paid:</strong> money received and matched.</li><li><strong>Overdue:</strong> due date passed, no payment.</li></ul>
+<p>You can make Overdue automatic. With the due date in F2, your typed status in G2 and the paid date in H2, put this in a helper column:</p>
+<pre><code>=IF(H2&lt;&gt;"","Paid",IF(AND(G2="Sent",F2&lt;TODAY()),"Overdue",G2))</code></pre>
+<p>Using a separate helper column keeps you from overwriting your own typed status. Add conditional formatting to color Overdue rows so they stand out.</p>
+<h2>A 15-minute weekly review</h2>
+<p>Pick a fixed slot, such as Friday afternoon.</p>
+<ol><li>Scan Sent invoices due in the next few days and send a short heads-up if the client usually needs a nudge.</li><li>Look at everything Overdue and decide who to contact today.</li><li>Compare bank and payment-platform deposits with the sheet and mark what arrived.</li><li>Write down any finished work you have not yet invoiced.</li></ol>
+<p>Fifteen minutes every week beats a panicked hour once a quarter.</p>
+<h2>Following up on late payments politely</h2>
+<p>Late payment is rarely personal. Invoices get buried, approvers go on leave and finance teams pay in batches. Assume that first.</p>
+<p>A short message works well:</p>
+<blockquote><p>Hi [Name], quick follow-up on invoice #[number] for [project], which was due on [date]. Could you let me know when I can expect payment, or if you need the invoice resent or any details for your accounts team? Thanks!</p></blockquote>
+<p>If there is no reply after several days, follow up again, still friendly, and ask for a specific date. Keep everything in writing and log each contact in the Notes column. If an invoice stays unpaid for a long time, re-read your contract and consider your local options; for legal questions, ask a professional.</p>
+<h2>Match every payment to an invoice</h2>
+<p>When money lands, find its invoice and update the status and paid date right away. Watch for:</p>
+<ul><li><strong>Lump sums</strong> covering several invoices. Split them across rows.</li><li><strong>Partial payments.</strong> Record the amount received in Notes and track the balance.</li><li><strong>Fees.</strong> Platforms often deduct a fee, so the deposit is lower than the invoice. Note it so your books reconcile.</li></ul>
+<p>This also spares you the awkward moment of chasing a client for something already paid.</p>
+<h2>Habits that prevent most problems</h2>
+<ul><li>State payment terms on every proposal and invoice.</li><li>Invoice promptly after delivery or at the milestone, not weeks later.</li><li>Number invoices consistently.</li><li>Consider a deposit for new clients or large projects.</li><li>Review weekly, no exceptions.</li></ul>
+<h2>Summary</h2>
+<p>A usable invoice tracker is one row per invoice, a formula-driven due date, four statuses and a weekly review. Add polite, documented follow-ups and prompt payment matching, and most late-payment losses disappear.</p>
+<p>If you want this ready-made, my Google Sheets tracker includes an invoice tab with automatic due dates and Paid/Overdue status, plus income, expenses and a dashboard: <a href="https://sungudogukan.gumroad.com/l/freelancer-tracker" rel="noopener">https://sungudogukan.gumroad.com/l/freelancer-tracker</a></p>
+<p class="mut">Published 2026-11-26. See also: <a href="index.html">all guides</a>, <a href="../index.html">all calculators</a>.</p>
+</main>
+<footer class="site"><div class="wrap"><p><strong>Disclaimer:</strong> These guides and calculators give general information based on published fee tables and are not financial, tax or legal advice. Fees and rules change; always confirm on the official page before deciding. Not affiliated with Upwork, Fiverr, PayPal or Wise.</p><p><a href="../index.html">Home</a> · <a href="../upwork-fee-calculator.html">Upwork</a> · <a href="../fiverr-fee-calculator.html">Fiverr</a> · <a href="../paypal-fee-calculator.html">PayPal</a> · <a href="../blog/index.html">Guides</a></p><p>Free download: <a href="https://sungudogukan.gumroad.com/l/free-freelancer-income-tracker" rel="noopener">Freelancer Income Tracker (Google Sheets mini)</a> to log what you keep after fees.</p></div></footer>
+</body></html>

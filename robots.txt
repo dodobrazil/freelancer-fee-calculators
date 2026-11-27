@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dodobrazil.github.io/freelancer-fee-calculators/sitemap.xml
